@@ -10,6 +10,11 @@
             </div>
         </div>
         <div class="col-md-6 col-12">
+            @if (Session::get('donasi'))
+            <div class="alert alert-primary" role="alert">
+                Unduh kwitansinya donasi anda disini <u><a class="text-danger" href="{{ route('home.kwitansi', Session::get('id')) }}">Unduh Kwitansi</a></u>
+              </div>
+            @endif
             <form action="{{ route('home.uploadDonasi') }}" class="mt-5" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">

@@ -18,6 +18,7 @@ Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/donasi', 'HomeController@donasi')->name('home.donasi');
 Route::get('/profil', 'HomeController@profil')->name('home.profil');
 Route::get('/struktur', 'HomeController@struktur')->name('home.struktur');
+Route::get('/kwitansi/{id}', 'HomeController@kwitansi')->name('home.kwitansi');
 Route::post('/uploadDonasi', 'HomeController@uploadDonasi')->name('home.uploadDonasi');
 
 Auth::routes();

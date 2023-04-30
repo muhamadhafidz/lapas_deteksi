@@ -3,13 +3,14 @@
     <a href="{{ route('login') }}" class="brand-link text-center font-weight-bold">
       {{-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
       <span class="brand-text font-weight-normal">Yayasan Yatim Al-Ihsan</span>
+      <br>
+      {{ Auth::user()->roles == 'admin' ? 'Admin' : 'Bendahara' }}
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="mt-3 pb-3 mb-3 d-flex">
-        
       </div>
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
@@ -57,7 +58,7 @@
           </li>
           @endif
           @if (Auth::user()->roles == 'admin')
-          
+{{--           
           <li class="nav-item">
             <a href="{{ route('pengeluaran.index') }}" class="nav-link {{ Request::is('pengeluaran*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-signature"></i>
@@ -75,7 +76,7 @@
               <i class="nav-icon fas fa-file-signature"></i>
               <p>Data Donasi</p>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a href="{{ route('master-donatur.index') }}" class="nav-link {{ Request::is('donatur*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-signature"></i>

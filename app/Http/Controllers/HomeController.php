@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Donasi;
 use App\ProfilYayasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
+use PDF;
 
 class HomeController extends Controller
 {
@@ -38,6 +40,16 @@ class HomeController extends Controller
     {
         $data = ProfilYayasan::first();
         return view('user.pages.struktur.index', compact('data'));
+    }
+
+    public function kwitansi($id)
+    {
+        $donasi = Donasi::findOrFail($id);
+        $terbilang = strtolower(terbilang($donasi->nominal_donasi));
+        $image = URL::to('/').'/img/kuitansi.png';
+        $pdf = PDF::loadview('admin.invoice.print.kuitansi',compact('donasi', 'terbilang'))->setPaper([0,0,610,235]);
+
+        return $pdf->stream('kwitansi_donasi.pdf');
     }
 
     public function uploadDonasi(Request $request)
@@ -79,9 +91,10 @@ class HomeController extends Controller
             }
             $data['bukti_donasi'] = $gambar;
 
-            Donasi::create($data);
+            $donasi = Donasi::create($data);
+            // dd($donasi);
             Alert::toast('data donasi berhasil diunggah', 'success');
-            return redirect()->route('home.index');
+            return redirect()->route('home.donasi')->with(['donasi' => true, 'id' => $donasi->id]);
         }
     }
 }

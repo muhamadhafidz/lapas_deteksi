@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- slider Area Start-->
-<div class="slider-area">
+<div class="slider-area" style="background-image: url({{ asset('storage/'.$data->foto) }})!important">
     <div class="slider-active">
         <!-- Single Slider -->
         <div class="single-slider slider-height d-flex align-items-center">
@@ -54,7 +54,7 @@
                         <h2>Profil dan Sejarah Yayasan Yatim Al-Ihsan</h2>
                     </div>
                 </div>
-                <a href="about.html" class="btn">Selengkapnya -></a>
+                <a href="{{ route('home.profil') }}" class="btn">Selengkapnya -></a>
             </div>
             <div class="col-lg-6 col-md-12">
                 <!-- about-img -->
