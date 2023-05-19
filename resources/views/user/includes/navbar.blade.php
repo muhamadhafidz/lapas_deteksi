@@ -32,6 +32,7 @@
                                           <li><a href="/">Beranda</a></li>
                                           <li><a href="{{ route('home.profil') }}">Profil Yayasan</a></li>
                                           <li><a href="{{ route('home.struktur') }}">Struktur Organisasi</a></li>
+                                          <li><a href="{{ route('home.kegiatan') }}">Kegiatan Yayasan</a></li>
                                           {{-- <li><a href="events.html">Kegiatan</a></li>
                                           <li><a href="contact.html">Kontak</a></li> --}}
                                       </ul>

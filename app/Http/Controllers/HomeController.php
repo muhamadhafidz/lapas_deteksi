@@ -27,8 +27,9 @@ class HomeController extends Controller
 
     public function kegiatan()
     {
-        $data = KegiatanYayasan::all();
-        return view('user.pages.kegiatan.index', compact('data'));
+        $kegiatan = KegiatanYayasan::all();
+        $data = ProfilYayasan::first();
+        return view('user.pages.kegiatan.index', compact('data', 'kegiatan'));
     }
 
     public function donasi()
