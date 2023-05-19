@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Donasi;
+use App\KegiatanYayasan;
 use App\ProfilYayasan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
@@ -22,6 +23,12 @@ class HomeController extends Controller
     {
         $data = ProfilYayasan::first();
         return view('user.pages.home.index', compact('data'));
+    }
+
+    public function kegiatan()
+    {
+        $data = KegiatanYayasan::all();
+        return view('user.pages.kegiatan.index', compact('data'));
     }
 
     public function donasi()

@@ -96,6 +96,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('kegiatan.index') }}" class="nav-link {{ Request::is('kegiatan*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>Kegiatan Yayasan</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('profil-yayasan.index') }}" class="nav-link {{ Request::is('profil-yayasan*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-signature"></i>
               <p>Profil Yayasan</p>

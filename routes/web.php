@@ -18,6 +18,7 @@ Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/donasi', 'HomeController@donasi')->name('home.donasi');
 Route::get('/profil', 'HomeController@profil')->name('home.profil');
 Route::get('/struktur', 'HomeController@struktur')->name('home.struktur');
+Route::get('/kegiatan-yayasan', 'HomeController@kegiatan')->name('home.kegiatan');
 Route::get('/kwitansi/{id}', 'HomeController@kwitansi')->name('home.kwitansi');
 Route::post('/uploadDonasi', 'HomeController@uploadDonasi')->name('home.uploadDonasi');
 
@@ -35,6 +36,7 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::resource('pengguna', PenggunaController::class)->names('pengguna');
     Route::resource('data-donasi', DataDonasiController::class)->names('data-donasi');
     Route::resource('pemasukan', PemasukanController::class)->names('pemasukan');
+    Route::resource('kegiatan', KegiatanController::class)->names('kegiatan');
     Route::resource('pengeluaran', PengeluaranController::class)->names('pengeluaran');
 });
 
