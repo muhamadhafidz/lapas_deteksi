@@ -14,7 +14,7 @@
                         <div class="col-6">
                             <div class="card mb-3" style="max-width: 540px;">
                                 <div class="row no-gutters">
-                                  <div class="col-md-4">
+                                  <div class="col-md-4 imgContainer">
                                     <img src="storage/{{ $item->foto }}" alt="..." height="150px">
                                   </div>
                                   <div class="col-md-8">
@@ -34,3 +34,13 @@
     </div>
 </div>
 @endsection
+
+
+<style>
+  .imgContainer{
+    position: relative;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+</style>

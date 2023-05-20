@@ -126,6 +126,20 @@
 <!-- Blog Area End -->
 
 <div class="bg-dark text-white text-center" style="padding-top:20px; padding-bottom:20px ;width:100%">
-    Copyright Yayasan Yatim Al-Ihsan | <u><a href="{{ route('login') }}">Login Admin</a></u>
+    <h5 class="text-white mb-4">Kontak Kami</h5>
+    <div class="container">
+        <div class="row">
+            <div class="col text-left">
+                <b class="text-white">Alamat : </b>
+                <p class="text-white">Jl. H. Muhi Raya No.99, RT.8/RW.4, Pd. Pinang, Kec. Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12310</p>
+            </div>
+            <div class="col text-left">
+                <b class="text-white">Nomor Telepon : </b>
+                <p class="text-white">021. 7665687 / 7650451 / 7650301</p>
+            </div>
+        </div>
+        <hr>
+        Copyright Yayasan Yatim Al-Ihsan | <u><a href="{{ route('login') }}">Login Admin</a></u>
+    </div>
 </div>
 @endsection
