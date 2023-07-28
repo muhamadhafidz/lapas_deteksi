@@ -15,36 +15,41 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('home.index');
-Route::get('/donasi', 'HomeController@donasi')->name('home.donasi');
-Route::get('/profil', 'HomeController@profil')->name('home.profil');
-Route::get('/struktur', 'HomeController@struktur')->name('home.struktur');
-Route::get('/kegiatan-yayasan', 'HomeController@kegiatan')->name('home.kegiatan');
-Route::get('/kwitansi/{id}', 'HomeController@kwitansi')->name('home.kwitansi');
-Route::post('/uploadDonasi', 'HomeController@uploadDonasi')->name('home.uploadDonasi');
 
 Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::put('/ubah-password/{id}', 'HomeController@update')->name('ubah-password');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 
-Route::middleware(['isAdmin'])->group(function () {
-    Route::put('profil-yayasan/upload-foto/{id}/{tipe}', 'ProfilYayasanController@uploadFoto')->name('profil-yayasan.uploadFoto');
-    Route::resource('profil-yayasan', 'ProfilYayasanController')->names('profil-yayasan');
-    Route::resource('donatur', DonaturController::class)->names('master-donatur');
-    Route::resource('pengurus', PengurusController::class)->names('master-pengurus');
-    Route::resource('anak-asuh', AnakAsuhController::class)->names('master-anak-asuh');
-    Route::resource('pengguna', PenggunaController::class)->names('pengguna');
-    Route::resource('data-donasi', DataDonasiController::class)->names('data-donasi');
-    Route::resource('pemasukan', PemasukanController::class)->names('pemasukan');
-    Route::resource('kegiatan', KegiatanController::class)->names('kegiatan');
-    Route::resource('pengeluaran', PengeluaranController::class)->names('pengeluaran');
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/peta-kerawanan', 'PetaKerawananController@index')->name('admin.peta-kerawanan.index');
+
+    Route::get('/laporan-deteksi-dini', 'LaporanDeteksiController@index')->name('admin.laporan-deteksi.index');
+
+    Route::get('/master-instrument', 'MasterInstrumentController@index')->name('admin.master-instrument.index');
+    Route::post('/master-instrument', 'MasterInstrumentController@store')->name('admin.master-instrument.store');
+    Route::put('/master-instrument/{id}/update', 'MasterInstrumentController@update')->name('admin.master-instrument.update');
+    Route::delete('/master-instrument/{id}/delete', 'MasterInstrumentController@delete')->name('admin.master-instrument.delete');
+
+    Route::get('/data-user', 'UserController@index')->name('admin.data-user.index');
+    Route::post('/data-user', 'UserController@store')->name('admin.data-user.store');
+    Route::put('/data-user/{id}/update', 'UserController@update')->name('admin.data-user.update');
+    Route::delete('/data-user/{id}/delete', 'UserController@destroy')->name('admin.data-user.delete');
+
+    Route::get('/data-upt', 'UptController@index')->name('admin.data-upt.index');
+    Route::post('/data-upt', 'UptController@store')->name('admin.data-upt.store');
+    Route::put('/data-upt/{id}/update', 'UptController@update')->name('admin.data-upt.update');
+    Route::delete('/data-upt/{id}/delete', 'UptController@destroy')->name('admin.data-upt.delete');
 });
 
-Route::middleware(['isUser'])->group(function () {
-    Route::resource('data-donasi', DataDonasiController::class)->names('data-donasi');
-    Route::resource('pemasukan', PemasukanController::class)->names('pemasukan');
-    Route::resource('pengeluaran', PengeluaranController::class)->names('pengeluaran');
+Route::middleware(['auth', 'isUser'])->group(function () {
+    Route::get('/laporan-deteksi-dini-user', 'UserLaporanController@index')->name('user.laporan-user.index');
+
+    Route::get('/input-deteksi-dini', 'InputDeteksiDiniController@index')->name('user.input-deteksi-dini.index');
+    Route::get('/input-deteksi-dini/create', 'InputDeteksiDiniController@create')->name('user.input-deteksi-dini.create');
+    Route::post('/input-deteksi-dini', 'InputDeteksiDiniController@store')->name('user.input-deteksi-dini.store');
+    Route::get('/input-deteksi-dini/{id}', 'InputDeteksiDiniController@detail')->name('user.input-deteksi-dini.detail');
+    Route::get('/input-deteksi-dini/{id}/edit', 'InputDeteksiDiniController@edit')->name('user.input-deteksi-dini.edit');
+    Route::put('/input-deteksi-dini/{id}/update', 'InputDeteksiDiniController@update')->name('user.input-deteksi-dini.update');
+    Route::delete('/input-deteksi-dini/{id}/delete', 'InputDeteksiDiniController@delete')->name('user.input-deteksi-dini.delete');
 });
 
-
-Route::get('/home', 'HomeController@index')->name('home');

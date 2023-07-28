@@ -5,63 +5,6 @@
 <div class="content">
   <div class="container-fluid">
     <!-- Small boxes (Stat box) -->
-    <div class="row">
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-success">
-          <div class="inner">
-            <h3>Rp. {{ $pemasukan }}</h3>
-
-            <p>Pemasukan</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-plus"></i>
-          </div>
-        </div>
-      </div>
-      <!-- ./col -->
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-danger">
-          <div class="inner">
-            <h3>Rp. {{ $pengeluaran }}</h3>
-
-            <p>Pengeluaran</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-minus"></i>
-          </div>
-        </div>
-      </div>
-      <!-- ./col -->
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ $total_donasi }}</h3>
-
-            <p>Banyak Donasi</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-person-add"></i>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>Rp. {{ $nominal_donasi }}</h3>
-
-            <p>Total Donasi</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-person-add"></i>
-          </div>
-        </div>
-      </div>
-      <!-- ./col -->
-    </div>
     {{-- <div class="row">
       <!-- right col (We are only adding the ID to make the widgets sortable)-->
       <section class="col-lg-12">

@@ -13,12 +13,23 @@
             @method('PUT')
             <div class="modal-body">
               <div class="form-group">
-                <label for="name">Nama UPT</label>
-                <input type="text" class="form-control" id="name-edit" name="name" required>
+                <input type="text" class="form-control d-none" id="id-edit" name="id" readonly>
               </div>
               <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="text" class="form-control" id="email-edit" name="email" required>
+                <label for="name">Nama UPT</label>
+                <input type="text" class="form-control" id="name-edit" name="name" readonly>
+              </div>
+              <div class="form-group">
+                  <label for="kepala_upt">Kelapa UPT</label>
+                  <input type="text" class="form-control" id="kepala_upt-edit" name="kepala_upt" required>
+              </div>
+              <div class="form-group">
+                  <label for="alamat">Alamat</label>
+                  <input type="text" class="form-control" id="alamat-edit" name="alamat" required>
+              </div>
+              <div class="form-group">
+                  <label for="no_telp">Nomor Telpon</label>
+                  <input type="text" class="form-control" id="no_telp-edit" name="no_telp" required>
               </div>
             </div> 
             <div class="modal-footer">

@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="{{ route('login') }}" class="brand-link text-center font-weight-bold">
       {{-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
-      <span class="brand-text font-weight-normal">Yayasan Yatim Al-Ihsan</span>
+      <span class="brand-text font-weight-normal">Deteksi Dini</span>
       <br>
       {{ Auth::user()->roles == 'admin' ? 'Admin' : 'Bendahara' }}
     </a>
@@ -28,7 +28,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           
-          <li class="nav-item  {{ Request::is('admin/dashboard*') ? 'menu-open' : '' }}">
+          {{-- <li class="nav-item  {{ Request::is('admin/dashboard*') ? 'menu-open' : '' }}">
             
             <a class="nav-link" href="">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -36,81 +36,50 @@
                 Dashboard
               </p>
             </a>
-          </li>
+          </li> --}}
           @if (Auth::user()->roles == 'user')
           <li class="nav-item">
-            <a href="{{ route('pengeluaran.index') }}" class="nav-link {{ Request::is('pengeluaran*') ? 'active' : '' }}">
+            <a href="{{ route('user.laporan-user.index') }}" class="nav-link {{ Request::is('user.laporan-user*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-signature"></i>
-              <p>Pengeluaran</p>
+              <p>Laporan User</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('pemasukan.index') }}" class="nav-link {{ Request::is('pemasukan*') ? 'active' : '' }}">
+            <a href="{{ route('user.input-deteksi-dini.index') }}" class="nav-link {{ Request::is('user.input-deteksi-dini*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-signature"></i>
-              <p>Pemasukan</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('data-donasi.index') }}" class="nav-link {{ Request::is('data-donasi*') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-file-signature"></i>
-              <p>Data Donasi</p>
+              <p>Input Deteksi Dini</p>
             </a>
           </li>
           @endif
           @if (Auth::user()->roles == 'admin')
-{{--           
           <li class="nav-item">
-            <a href="{{ route('pengeluaran.index') }}" class="nav-link {{ Request::is('pengeluaran*') ? 'active' : '' }}">
+            <a href="{{ route('admin.peta-kerawanan.index') }}" class="nav-link {{ Request::is('peta-kerawanan*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-signature"></i>
-              <p>Pengeluaran</p>
+              <p>Peta Kerawanan</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('pemasukan.index') }}" class="nav-link {{ Request::is('pemasukan*') ? 'active' : '' }}">
+            <a href="{{ route('admin.laporan-deteksi.index') }}" class="nav-link {{ Request::is('laporan-deteksi*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-signature"></i>
-              <p>Pemasukan</p>
+              <p>Laporan Deteksi Dini</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('data-donasi.index') }}" class="nav-link {{ Request::is('data-donasi*') ? 'active' : '' }}">
+            <a href="{{ route('admin.master-instrument.index') }}" class="nav-link {{ Request::is('master-instrument*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-signature"></i>
-              <p>Data Donasi</p>
-            </a>
-          </li> --}}
-          <li class="nav-item">
-            <a href="{{ route('master-donatur.index') }}" class="nav-link {{ Request::is('donatur*') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-file-signature"></i>
-              <p>Donatur</p>
+              <p>Master Instrument</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('master-pengurus.index') }}" class="nav-link {{ Request::is('pengurus*') ? 'active' : '' }}">
+            <a href="{{ route('admin.data-upt.index') }}" class="nav-link {{ Request::is('data-upt*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-signature"></i>
-              <p>Pengurus</p>
+              <p>Data UPT</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('master-anak-asuh.index') }}" class="nav-link {{ Request::is('anak-asuh*') ? 'active' : '' }}">
+            <a href="{{ route('admin.data-user.index') }}" class="nav-link {{ Request::is('data-user*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-signature"></i>
-              <p>Anak Asuh</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('kegiatan.index') }}" class="nav-link {{ Request::is('kegiatan*') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-file-signature"></i>
-              <p>Kegiatan Yayasan</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('profil-yayasan.index') }}" class="nav-link {{ Request::is('profil-yayasan*') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-file-signature"></i>
-              <p>Profil Yayasan</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('pengguna.index') }}" class="nav-link {{ Request::is('pengguna*') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-file-signature"></i>
-              <p>Pengguna</p>
+              <p>Data User</p>
             </a>
           </li>
           @endif

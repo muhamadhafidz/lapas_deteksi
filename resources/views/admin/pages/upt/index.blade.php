@@ -12,9 +12,6 @@
                             <div class="col">
                                 <h4 class="card-title font-weight-normal">Data Master User</h4>
                             </div>
-                            <div class="col text-right">
-                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#create">+ Tambah User</button>
-                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -22,7 +19,9 @@
                             <thead>
                                 <th>No</th>
                                 <th>Nama UPT</th>
-                                <th>Email</th>
+                                <th>Kepala UPT</th>
+                                <th>Alamat</th>
+                                <th>Nomor Telepon</th>
                                 <th>Aksi</th>
                             </thead>
                             <tbody>
@@ -30,19 +29,19 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->email }}</td>
+                                    <td>{{ $item->upt->kepala_upt }}</td>
+                                    <td>{{ $item->upt->alamat }}</td>
+                                    <td>{{ $item->upt->no_telp }}</td>
                                     <td>
                                         <button type="button" class="btn btn-sm btn-warning" 
-                                            data-route="{{ route('admin.data-user.update', $item->id) }}" 
+                                            data-route="{{ route('admin.data-upt.update', $item->id) }}" 
                                             data-name="{{ $item->name }}" 
-                                            data-email="{{ $item->email }}" 
+                                            data-kepala="{{ $item->upt->kepala_upt }}" 
+                                            data-alamat="{{ $item->upt->alamat }}" 
+                                            data-telp="{{ $item->upt->no_telp }}" 
+                                            data-id="{{ $item->upt->id }}" 
                                       
                                             onclick="edit(this)">Edit</button>
-                                        <form action="{{ route('admin.data-user.delete', $item->id) }}" method="post" class="ml-1 d-inline" id="form-hapus-{{ $item->id }}">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="button" onclick="hapus({{ $item->id }})" class="btn btn-danger btn-sm">Hapus</button>
-                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -58,8 +57,7 @@
 </div>
 <!-- Button trigger modal -->
 
-@include('admin.pages.user.create')
-@include('admin.pages.user.edit')
+@include('admin.pages.upt.edit')
 @endsection
 
 @push('after-script')
@@ -67,12 +65,18 @@
     function edit(edit)
     {
         var route = $(edit).data('route');
-        var email = $(edit).data('email');
         var name = $(edit).data('name');
+        var kepala = $(edit).data('kepala');
+        var alamat = $(edit).data('alamat');
+        var telp = $(edit).data('telp');
+        var id = $(edit).data('id');
 
         $('#form-edit').attr('action', route);
         $('#name-edit').val(name);
-        $('#email-edit').val(email);
+        $('#id-edit').val(id);
+        $('#kepala_upt-edit').val(kepala);
+        $('#alamat-edit').val(alamat);
+        $('#no_telp-edit').val(telp);
         $('#edit').modal('show');
     }
 
