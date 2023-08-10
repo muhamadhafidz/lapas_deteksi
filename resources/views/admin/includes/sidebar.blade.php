@@ -4,7 +4,7 @@
       {{-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
       <span class="brand-text font-weight-normal">Deteksi Dini</span>
       <br>
-      {{ Auth::user()->roles == 'admin' ? 'Admin' : 'Bendahara' }}
+      {{ Auth::user()->roles == 'admin' ? 'Admin' : 'UPT '.Auth::user()->name }}
     </a>
 
     <!-- Sidebar -->
@@ -48,6 +48,12 @@
             <a href="{{ route('user.input-deteksi-dini.index') }}" class="nav-link {{ Request::is('user.input-deteksi-dini*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-signature"></i>
               <p>Input Deteksi Dini</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('user.ganti-password.index') }}" class="nav-link {{ Request::is('user.input-deteksi-dini*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-file-signature"></i>
+              <p>Ganti Password</p>
             </a>
           </li>
           @endif

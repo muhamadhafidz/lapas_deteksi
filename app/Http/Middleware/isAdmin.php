@@ -19,6 +19,6 @@ class isAdmin
         if (Auth::user()->roles == 'admin') {
             return $next($request);
         }
-        return redirect()->route('beranda.index');
+        return redirect()->route('dashboard.index');
     }
 }

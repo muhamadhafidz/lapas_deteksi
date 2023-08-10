@@ -19,6 +19,6 @@ class isUser
         if (Auth::user()->roles == 'user') {
             return $next($request);
         }
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard.index');
     }
 }
