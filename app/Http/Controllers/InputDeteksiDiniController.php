@@ -81,6 +81,7 @@ class InputDeteksiDiniController extends Controller
         }
 
         $instData = InstrumentData::create([
+            'upt_id' => auth()->user()->upt->id,
             'year' => $year,
             'quartal' => $quartal 
         ]);
@@ -89,6 +90,7 @@ class InputDeteksiDiniController extends Controller
         foreach($cat as $ct) {
 
             $catAns = CategoryAnswer::create([
+                'instrument_data_id' => $instData->id,
                 'name' => $ct->name
             ]);
 

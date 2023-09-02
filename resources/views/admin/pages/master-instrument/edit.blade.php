@@ -14,7 +14,7 @@
             <div class="modal-body">
               <div class="form-group">
                 <label for="element_assessment">Element Assessment</label>
-                <input type="text" name="element_assessment" id="edit_element_assessment" class="form-control">
+                <textarea type="text" name="element_assessment" id="edit_element_assessment" class="form-control"></textarea>
               </div>
               <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>

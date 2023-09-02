@@ -21,10 +21,10 @@ class MasterInstrumentController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'element_assessment' => 'required',
-            'deskripsi'          => 'required',
-            'sub_category_id'    => 'required',
-            'is_absolute'        => 'required'
+            'element_assessment' => 'required|max:255',
+            'deskripsi'          => '',
+            'sub_category_id'    => 'required|max:255',
+            'is_absolute'        => 'required|max:255'
         ]);
 
         Instrument::create($data);
@@ -36,10 +36,10 @@ class MasterInstrumentController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->validate([
-            'element_assessment' => 'required',
-            'deskripsi'          => 'required',
-            'sub_category_id'    => 'required',
-            'is_absolute'        => 'required'
+            'element_assessment' => 'required|max:255',
+            'deskripsi'          => '',
+            'sub_category_id'    => 'required|max:255',
+            'is_absolute'        => 'required|max:255'
         ]);
 
         $inst = Instrument::findOrFail($id);
