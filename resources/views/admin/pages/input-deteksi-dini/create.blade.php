@@ -7,18 +7,32 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
-                    <div class="card-header ">
-                        <div class="row mb-3">
-                            <div class="col">
-                                <h4 class="card-title font-weight-normal">Tambah Input Deteksi Dini</h4>
-                            </div>
-                            <div class="col text-right">
+                    <form action="{{ route('user.input-deteksi-dini.store') }}" method="POST">
+                        @csrf
+                        <div class="card-header ">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h4 class="card-title font-weight-normal">Tambah Input Deteksi Dini</h4>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="Quartal">Quartal</label>
+                                        <select name="quartal" id="quartal" class="form-control">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Quartal">Tahun</label>
+                                        <input type="number" class="form-control" name="year" id="year">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('user.input-deteksi-dini.store') }}" method="POST">
-                            @csrf
+                        <div class="card-body">
+                        
                             <table class="table table-bordered display nowrap"  id="crudTable" style="width: 100%">
                                 <thead>
                                     <th>No</th>
@@ -74,8 +88,8 @@
                                 </tbody>
                             </table>
                             <button type="submit" class="btn btn-success mt-5 w-100">Submit</button>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

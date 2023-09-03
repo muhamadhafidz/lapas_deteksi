@@ -13,64 +13,67 @@
                                 <h4 class="card-title font-weight-normal">Data Master User</h4>
                             </div>
                             <div class="col text-right">
-                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#create">+ Tambah Element Assessment</button>
+                                {{-- <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#create">+ Tambah Element Assessment</button> --}}
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered display nowrap"  id="crudTable" style="width: 100%">
-                            <thead>
-                                <th>No</th>
-                                <th>Element Assessment</th>
-                                <th>Deskripsi</th>
-                                <th>Nilai Bobot Ideal</th>
-                                <th>Bobot</th>
-                                <th>TSC</th>
-                                <th>Nilai Bobot Potensi Gangguan Keamanan</th>
-                            </thead>
-                            <tbody>
-                                @foreach ($insData->category_answers as $ct)
-                                    <tr class="font-weight-bold" style="background-color: grey">
-                                        <td></td>
-                                        <td colspan="6" style="font-size: 11px; color: white;">{{ $loop->iteration }} {{ $ct->name }}</td>
-                                    </tr>
-                                        @foreach ($ct->sub_category_answers as $sub)
-                                        <tr class="font-weight-bold" style="background-color: rgb(195, 195, 195)">
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered display nowrap"  id="crudTable" style="width: 100%">
+                                <thead>
+                                    <th>No</th>
+                                    <th>Element Assessment</th>
+                                    <th>Deskripsi</th>
+                                    <th>Nilai Bobot Ideal</th>
+                                    <th>Bobot</th>
+                                    <th>TSC</th>
+                                    <th>Nilai Bobot Potensi Gangguan Keamanan</th>
+                                </thead>
+                                <tbody>
+                                    @foreach ($insData->category_answers as $ct)
+                                        <tr class="font-weight-bold" style="background-color: grey">
                                             <td></td>
-                                            <td colspan="6" style="font-size: 11px;">{{ $sub->name }}</td>
+                                            <td colspan="6" style="font-size: 11px; color: white;">{{ $loop->iteration }} {{ $ct->name }}</td>
                                         </tr>
-                                            @forelse ($sub->instrument_answer as $item)
-                                            <tr>
-                                                <td class="align-middle text-center">{{ $loop->iteration }}</td>
-                                                <td>{{ $item->element_assessment }}</td>
-                                                <td>{{ $item->deskripsi }}</td>
-                                                @if ($loop->index <= 0)
-                                                <td class="align-middle text-center" rowspan="{{ $sub->instrument_answer->count() }}">{{ $sub->nilai_bobot_ideal }}</td>
-                                                @endif
-                                                <td>{{ $item->bobot }}</td>
-                                                @if ($loop->index <= 0)
-                                                <td class="align-middle text-center" rowspan="{{ $sub->instrument_answer->count() }}">{{ $sub->instrument_answer_result->tsc }}</td>
-                                                <td class="align-middle text-center" rowspan="{{ $sub->instrument_answer->count() }}">{{ $sub->instrument_answer_result->nilai_bobot }}</td>
-                                                @endif
+                                            @foreach ($ct->sub_category_answers as $sub)
+                                            <tr class="font-weight-bold" style="background-color: rgb(195, 195, 195)">
+                                                <td></td>
+                                                <td colspan="6" style="font-size: 11px;">{{ $sub->name }}</td>
                                             </tr>
-                                            @empty
-                                            <tr>
-                                                <td class="align-middle text-center" colspan="7">Tidak ada instrument data</td>
-                                            </tr>
-                                            @endforelse
-                                        @endforeach
+                                                @forelse ($sub->instrument_answer as $item)
+                                                <tr>
+                                                    <td class="align-middle text-center">{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->element_assessment }}</td>
+                                                    <td>{{ $item->deskripsi }}</td>
+                                                    @if ($loop->index <= 0)
+                                                    <td class="align-middle text-center" rowspan="{{ $sub->instrument_answer->count() }}">{{ $sub->nilai_bobot_ideal }}</td>
+                                                    @endif
+                                                    <td>{{ $item->bobot }}</td>
+                                                    @if ($loop->index <= 0)
+                                                    <td class="align-middle text-center" rowspan="{{ $sub->instrument_answer->count() }}">{{ $sub->instrument_answer_result->tsc }}</td>
+                                                    <td class="align-middle text-center" rowspan="{{ $sub->instrument_answer->count() }}">{{ $sub->instrument_answer_result->nilai_bobot }}</td>
+                                                    @endif
+                                                </tr>
+                                                @empty
+                                                <tr>
+                                                    <td class="align-middle text-center" colspan="7">Tidak ada instrument data</td>
+                                                </tr>
+                                                @endforelse
+                                            @endforeach
+                                        </tr>
+                                    @endforeach
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="2">Total</td>
+                                        <td >{{ $insData->sub_category_answers->sum('nilai_bobot_ideal') }}</td>
+                                        <td colspan="2">{{ $insData->bobot_total }}</td>
+                                        <td >{{ $insData->sub_category_answers->sum('nilai_bobot_ideal') - $insData->bobot_total }}</td>
                                     </tr>
-                                @endforeach
-                                <tr>
-                                    <td></td>
-                                    <td colspan="2">Total</td>
-                                    <td >{{ $insData->sub_category_answers->sum('nilai_bobot_ideal') }}</td>
-                                    <td colspan="2">{{ $insData->bobot_total }}</td>
-                                    <td >{{ $insData->sub_category_answers->sum('nilai_bobot_ideal') - $insData->bobot_total }}</td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="mt-3 border px-3 py-2" style="background: #f1f1f1">
                             <table border="0" >
                                 <tr>

@@ -42,9 +42,6 @@
                                             <a class="btn btn-sm btn-secondary" 
                                                 href="{{ route('user.input-deteksi-dini.detail', $data->id) }}"
                                                 >Detail</a>
-                                            <a class="btn btn-sm btn-warning" 
-                                                href="{{ route('user.input-deteksi-dini.edit', $data->id) }}"
-                                                >Edit</a>
                                             <form action="{{ route('user.input-deteksi-dini.delete', $data->id) }}" method="post" class="ml-1 d-inline" id="form-hapus-{{ $data->id }}">
                                                 @csrf
                                                 @method('delete')

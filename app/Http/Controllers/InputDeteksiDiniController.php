@@ -55,22 +55,14 @@ class InputDeteksiDiniController extends Controller
     {
         $item = $request->validate([
             'id.*'    => 'required',
-            'bobot.*' => 'required'
+            'bobot.*' => 'required',
+            'quartal' => 'required',
+            'year'    => 'required'
         ]);
 
-        $month = date('n');
-        $year = date('Y');
+        $year = $item['year'];
 
-        $quartal = 0;
-        if ($month >= 1 && $month <= 3) {
-            $quartal =  1;
-        }else if( $month >= 4 && $month <= 6) {
-            $quartal = 2;
-        }else if ($month >= 7 && $month <= 9) {
-            $quartal = 3;
-        }else {
-            $quartal = 4;
-        }
+        $quartal = $item['quartal'];
         
         $data = InstrumentData::where('quartal', $quartal)->where('year', $year)->first();
 
@@ -80,6 +72,7 @@ class InputDeteksiDiniController extends Controller
             return redirect()->route('user.input-deteksi-dini.index');
         }
 
+        // dd("aw");
         $instData = InstrumentData::create([
             'upt_id' => auth()->user()->upt->id,
             'year' => $year,
@@ -88,24 +81,25 @@ class InputDeteksiDiniController extends Controller
         $cat = Category::get();
 
         foreach($cat as $ct) {
-
             $catAns = CategoryAnswer::create([
                 'instrument_data_id' => $instData->id,
                 'name' => $ct->name
             ]);
-
+            
             
             foreach ($ct->sub_categories as $subCt) {
-                $res = InstrumentAnswerResult::create([
-                    'category_answer_id' => $catAns->id,
-                    'tsc' => 0,
-                    'nilai_bobot' => 0
-                ]);
-
+                
                 $subCatAns = SubCategoryAnswer::create([
+                    'instrument_data_id' => $instData->id,
                     'category_answer_id' => $catAns->id,
                     'name' => $subCt->name,
                     'nilai_bobot_ideal' => $subCt->nilai_bobot_ideal,
+                ]);
+
+                $res = InstrumentAnswerResult::create([
+                    'sub_category_answer_id' => $subCatAns->id,
+                    'tsc' => 0,
+                    'nilai_bobot' => 0
                 ]);
 
                 $tsc = 0;
@@ -147,14 +141,14 @@ class InputDeteksiDiniController extends Controller
         $inst = Instrument::findOrFail($id);
         $inst->update($data);
         
-        return redirect()->route('admin.master-instrument.index');
+        return redirect()->route('user.input-deteksi-dini.index');
     }
 
     public function delete($id)
     {
-        $inst = Instrument::findOrFail($id);
+        $inst = InstrumentData::findOrFail($id);
         $inst->delete();
 
-        return redirect()->route('admin.master-instrument.index');
+        return redirect()->route('user.input-deteksi-dini.index');
     }
 }
