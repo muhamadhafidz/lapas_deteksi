@@ -40,8 +40,8 @@
                                                 href="{{ route('user.input-deteksi-dini.detail', $data->id) }}"
                                                 >Detail</a>
                                             <a class="btn btn-sm btn-warning" 
-                                                href="{{ route('user.input-deteksi-dini.edit', $data->id) }}"
-                                                >Print</a>
+                                                href="{{ route('user.laporan-user.export', $data->id) }}"
+                                                >Export</a>
                                         </td>
                                     </tr>
                                 @endforeach

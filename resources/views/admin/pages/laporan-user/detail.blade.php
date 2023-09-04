@@ -10,7 +10,7 @@
                     <div class="card-header ">
                         <div class="row mb-3">
                             <div class="col">
-                                <h4 class="card-title font-weight-normal">Data Master User</h4>
+                                <h4 class="card-title font-weight-normal">Laporan User</h4>
                             </div>
                             <div class="col text-right">
                                 <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#create">+ Tambah Element Assessment</button>

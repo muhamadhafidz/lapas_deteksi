@@ -43,6 +43,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
 Route::middleware(['auth', 'isUser'])->group(function () {
     Route::get('/laporan-deteksi-dini-user', 'UserLaporanController@index')->name('user.laporan-user.index');
+    Route::get('/laporan-deteksi-dini-user/{id}', 'UserLaporanController@export')->name('user.laporan-user.export');
     
     Route::get('/ganti-password', 'GantiPasswordController@index')->name('user.ganti-password.index');
     Route::post('/ganti-password', 'GantiPasswordController@store')->name('user.ganti-password.store');

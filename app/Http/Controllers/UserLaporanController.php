@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\LaporanExport;
 use App\InstrumentData;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserLaporanController extends Controller
 {
@@ -34,16 +36,16 @@ class UserLaporanController extends Controller
         return view('admin.pages.laporan-user.detail', compact('insData'));
     }
 
-    public function print($id)
+    public function export($id)
     {
-        $insData = InstrumentData::findOrFail($id);
+        $data = InstrumentData::findOrFail($id);
 
         $tsc = 0;
-        foreach($insData->sub_category_answers as  $subCatAns){
+        foreach($data->sub_category_answers as  $subCatAns){
             $tsc += $subCatAns->instrument_answer_result->tsc;
         }
-        $insData->bobot_total = $tsc;
+        $data->bobot_total = $tsc;
 
-        return view('admin.pages.laporan-user.detail', compact('insData'));
+        return Excel::download(new LaporanExport($data), 'report-upt.xlsx');
     }
 }
