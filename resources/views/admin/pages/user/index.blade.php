@@ -23,6 +23,7 @@
                                 <th>No</th>
                                 <th>Nama UPT</th>
                                 <th>Email</th>
+                                <th>Roles</th>
                                 <th>Aksi</th>
                             </thead>
                             <tbody>
@@ -31,11 +32,13 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
+                                    <td>{{ $item->roles }}</td>
                                     <td>
                                         <button type="button" class="btn btn-sm btn-warning" 
                                             data-route="{{ route('admin.data-user.update', $item->id) }}" 
                                             data-name="{{ $item->name }}" 
                                             data-email="{{ $item->email }}" 
+                                            data-roles="{{ $item->roles }}" 
                                       
                                             onclick="edit(this)">Edit</button>
                                         <form action="{{ route('admin.data-user.delete', $item->id) }}" method="post" class="ml-1 d-inline" id="form-hapus-{{ $item->id }}">
@@ -69,23 +72,23 @@
         var route = $(edit).data('route');
         var email = $(edit).data('email');
         var name = $(edit).data('name');
+        var roles = $(edit).data('roles');
 
         $('#form-edit').attr('action', route);
         $('#name-edit').val(name);
         $('#email-edit').val(email);
+        if (roles == 'user') {
+            $('#userRoles').attr('selected', 'selected');
+        } else if (roles == 'admin') {
+            $('#adminRoles').attr('selected', 'selected');
+        } 
         $('#edit').modal('show');
     }
 
     $(document).ready(function(){
         $('#crudTable').DataTable({
           dom: 'Blfrtip',
-          buttons: [
-                'excel',  'print',
-{
-                extend: 'pdfHtml5',
-                orientation: 'landscape',
-                pageSize: 'LEGAL'
-            }
+          buttons: ['print',
             ],
           "scrollX": true
         });

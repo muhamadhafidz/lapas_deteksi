@@ -20,6 +20,13 @@
                   <label for="email">Email</label>
                   <input type="text" class="form-control" id="email-edit" name="email" required>
               </div>
+              <div class="form-group">
+                <label for="roles">Roles</label>
+                <select class="form-control" name="roles" id="roles">
+                  <option id="userRoles" value="user">User</option>
+                  <option id="adminRoles" value="admin">Admin</option>
+                </select>
+              </div>
             </div> 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

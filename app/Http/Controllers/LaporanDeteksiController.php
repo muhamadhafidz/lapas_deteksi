@@ -11,7 +11,13 @@ class LaporanDeteksiController extends Controller
 {
     public function index()
     {
-        $data = InstrumentData::all();
+        $nowMonth = date('m');
+        $nowYear = date('Y');
+        $twoYearAgo = $nowYear - 2;
+        
+        $data = InstrumentData::where('created_at', '>=', $twoYearAgo.'-'.$nowMonth.'-01 00:00:00')
+            ->where('created_at', '<=', $nowYear.'-'.$nowMonth.'-31 23:59:59')
+            ->get();
         $tsc = 0;
         foreach ($data as $insData) {
             foreach($insData->sub_category_answers as  $subCatAns){
@@ -19,6 +25,9 @@ class LaporanDeteksiController extends Controller
             }
             $insData->bobot_total = $tsc;
         }
-        return view('admin.pages.laporan-deteksi.index', compact('data'));
+
+        $nowMonthString = date('F');
+
+        return view('admin.pages.laporan-deteksi.index', compact('data', 'nowMonthString', 'nowYear', 'twoYearAgo'));
     }
 }

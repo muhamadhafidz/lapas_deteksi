@@ -24,6 +24,13 @@
                   <label for="password">Password</label>
                   <input type="password" class="form-control" id="password" name="password" required>
               </div>
+              <div class="form-group">
+                <label for="roles">Roles</label>
+                <select class="form-control" name="roles" id="roles">
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

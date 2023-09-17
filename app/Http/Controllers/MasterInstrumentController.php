@@ -29,7 +29,11 @@ class MasterInstrumentController extends Controller
 
         Instrument::create($data);
 
+        $totalSubCat = Instrument::where('sub_category_id', $request->sub_category_id)->count();
 
+        SubCategory::where('id', $request->sub_category_id)->update([
+            'nilai_bobot_ideal' => $totalSubCat * 2
+        ]);
         return redirect()->route('admin.master-instrument.index');
     }
 
@@ -43,15 +47,32 @@ class MasterInstrumentController extends Controller
         ]);
 
         $inst = Instrument::findOrFail($id);
+        $oldSubCat = $inst->sub_category_id;
         $inst->update($data);
         
+        $totalSubCat = Instrument::where('sub_category_id', $request->sub_category_id)->count();
+        SubCategory::where('id', $request->sub_category_id)->update([
+            'nilai_bobot_ideal' => $totalSubCat * 2
+        ]);
+        
+        $totalSubCat = Instrument::where('sub_category_id', $oldSubCat)->count();
+        SubCategory::where('id', $oldSubCat)->update([
+            'nilai_bobot_ideal' => $totalSubCat * 2
+        ]);
+
         return redirect()->route('admin.master-instrument.index');
     }
 
     public function delete($id)
     {
         $inst = Instrument::findOrFail($id);
+        $oldSubCat = $inst->sub_category_id;
         $inst->delete();
+
+        $totalSubCat = Instrument::where('sub_category_id', $oldSubCat)->count();
+        SubCategory::where('id', $oldSubCat)->update([
+            'nilai_bobot_ideal' => $totalSubCat * 2
+        ]);
 
         return redirect()->route('admin.master-instrument.index');
     }

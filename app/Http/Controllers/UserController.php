@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = User::where('roles', 'user')->get();
+        $data = User::get();
         return view('admin.pages.user.index', compact('data'));
     }
 
@@ -38,12 +38,14 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
+            'roles' => ['required'],
         ];
 
         $messages = [
             'name.required' => 'Nama wajib diisi!',
             'email.required' => 'Email wajib diisi!',
             'password.required' => 'Password wajib diisi!',
+            'roles.required' => 'Role wajib diisi!',
         ];
         
         $validator = \Validator::make($request->all(), $rules, $messages);
@@ -56,7 +58,6 @@ class UserController extends Controller
         }else{
 
             $data = $validator->validated();
-            $data['roles'] = 'user';
             $data['password'] = Hash::make($data['password']);
             $user = User::create($data);
             
@@ -104,11 +105,13 @@ class UserController extends Controller
     {
         $rules = [
             'name' => ['required', 'string', 'max:255'],
+            'roles' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,id,'.$id],
         ];
 
         $messages = [
             'name.required' => 'Nama wajib diisi!',
+            'roles.required' => 'Role wajib diisi!',
             'email.required' => 'Email wajib diisi!',
         ];
         

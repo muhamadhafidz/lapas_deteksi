@@ -11,7 +11,7 @@
                     <div class="card-header ">
                         <div class="row mb-3">
                             <div class="col">
-                                <h4 class="card-title font-weight-normal">Data Master User</h4>
+                                <h4 class="card-title font-weight-normal">Input Deteksi Dini</h4>
                             </div>
                             <div class="col text-right">
                                 <a href="{{ route('user.input-deteksi-dini.create') }}" class="btn btn-sm btn-success">+ Tambah Deteksi Dini Baru</a>
@@ -67,13 +67,7 @@
     $(document).ready(function(){
         $('#crudTable').DataTable({
           dom: 'Blfrtip',
-          buttons: [
-                'excel',  'print',
-{
-                extend: 'pdfHtml5',
-                orientation: 'landscape',
-                pageSize: 'LEGAL'
-            }
+          buttons: [ 'print',
             ],
           "scrollX": true
         });

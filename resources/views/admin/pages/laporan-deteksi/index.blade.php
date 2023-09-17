@@ -2,6 +2,41 @@
 
 @section('content')
 {{-- {{  }} --}}
+<style>
+    @media print {
+            .bg-orange {
+                color: #000000!important;
+                background-color: #ff9800 !important;
+            }
+
+            .bg-red {
+                color: #000000!important;
+                background-color: #f44  336 !important;
+            }
+
+            .bg-yellow {
+                color: #000000!important;
+                background-color: #ffeb3b !important;
+            }
+
+            .bg-green {
+                color: #000000!important;
+                background-color: #4caf50 !important;
+            }
+
+            .bg-dark {
+                color: #000000!important;
+                background-color: #000000 !important;
+            }
+
+            .bg-secondary {
+                color: #000000!important;
+                background-color: #6c757d !important;
+            }
+
+            /* Add any additional styles you need for printing here */
+        }
+</style>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -10,15 +45,16 @@
                     <div class="card-header ">
                         <div class="row mb-3">
                             <div class="col">
-                                <h4 class="card-title font-weight-normal">Data Master User</h4>
+                                <h4 class="card-title font-weight-normal">Laporan Deteksi Dini</h4>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <h5 class="text-center">Grafik Tingkat Kerawanan Berdasarkan Hasil Instrument deteksi dini</h5>
-                        <h5 class="text-center">Periode Januari - Juni 2022</h5>
+                        <h5 class="text-center">Periode {{ $nowMonthString }} {{ $twoYearAgo }} - {{ $nowMonthString }} {{ $nowYear }}</h5>
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <button class="btn btn-outline-dark mb-2" type="button" id="printReport">Print</button>
+                            <table class="table table-bordered" id="tableReport">
                                 <thead  class="text-center">
                                     <tr>
                                         <th style="width: 5%" rowspan="2">No</th>
@@ -144,31 +180,13 @@
 @endsection
 
 @push('after-script')
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
-    var merah = '{{ $merah }}';
-    merah = parseInt(merah);
-    var orange = '{{ $orange }}';
-    orange = parseInt(orange);
-    var kuning = '{{ $kuning }}';
-    kuning = parseInt(kuning);
-    var hijau = '{{ $hijau }}';
-    hijau = parseInt(hijau);
+    $(document).ready(function(){
 
-    var total = merah + orange + kuning + hijau;
-
-
-    var options = {
-        chart: {
-            type: 'pie'
-        },
-        colors:['#57f542', '#fcd305', '#f59642', '#f54e42'],
-        series: [((hijau/total) * 100), ((kuning/total) * 100), ((orange/total) * 100), ((merah/total) * 100)],
-        labels: ['Ko operatif', 'Secara verbal resersif', 'Secara fisik tidak kooperatif', 'Menyerang - Potensi menimbulkan kerusakan fisik atau kematian - Melarikan diri']
-    }
-
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-
-    chart.render();
+        $('#printReport').on('click', function(){
+            window.print();
+        });
+    });
 </script>
+
 @endpush

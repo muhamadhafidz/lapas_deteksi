@@ -234,9 +234,9 @@
                                     </tr>
                                     <tr>
                                         <td>Berisiko Melarikan diri</td>
-                                        <td>85 <= x < 100</td>
+                                        <td>85 <= x <= 100</td>
                                         <td>
-                                            @if (((1-$totalPet) * 100) >= 85 && ((1-$totalPet) * 100) < 100)
+                                            @if (((1-$totalPet) * 100) >= 85 && ((1-$totalPet) * 100) <= 100)
                                                 {{ ((1-$totalPet) * 100) }}%
                                             @endif
                                         </td>

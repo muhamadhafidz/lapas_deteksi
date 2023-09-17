@@ -10,10 +10,11 @@
                     <div class="card-header ">
                         <div class="row mb-3">
                             <div class="col">
-                                <h4 class="card-title font-weight-normal">Data Master User</h4>
+                                <h4 class="card-title font-weight-normal">Peta Kerawanan</h4>
                             </div>
                         </div>
                     </div>
+                    <h5 class="text-center">Periode {{ $nowMonthString }} {{ $twoYearAgo }} - {{ $nowMonthString }} {{ $nowYear }}</h5>
                     <div class="card-body">
                         <div id="chart" ></div>
                         <div id="chart2" ></div>

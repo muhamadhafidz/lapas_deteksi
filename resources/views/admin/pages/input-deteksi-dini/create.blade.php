@@ -26,7 +26,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="Quartal">Tahun</label>
-                                        <input type="number" class="form-control" name="year" id="year">
+                                        <select name="year" id="year" class="form-control">
+                                            @for ($i = date('Y'); $i >= 2015; $i--)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -62,15 +66,15 @@
                                                     @endif
                                                     <td>
                                                       <div class="form-check form-check-inline">
-                                                        <input type="radio" class="form-check-input" name="bobot[{{ $item->id }}]" id="bobot2" value="2">
+                                                        <input type="radio" class="form-check-input" required name="bobot[{{ $item->id }}]" id="bobot2" value="2">
                                                         <label class="form-check-label" for="bobot2">2</label>
                                                       </div>
                                                       <div class="form-check form-check-inline">
-                                                        <input type="radio" class="form-check-input" name="bobot[{{ $item->id }}]" id="bobot1" value="1">
+                                                        <input type="radio" class="form-check-input" required {{ $item->is_absolute ? 'disabled' : '' }} name="bobot[{{ $item->id }}]" id="bobot1" value="1">
                                                         <label class="form-check-label" for="bobot1">1</label>
                                                       </div>
                                                       <div class="form-check form-check-inline">
-                                                        <input type="radio" class="form-check-input" name="bobot[{{ $item->id }}]" id="bobot0" value="0">
+                                                        <input type="radio" class="form-check-input" required name="bobot[{{ $item->id }}]" id="bobot0" value="0">
                                                         <label class="form-check-label" for="bobot0">0</label>
                                                       </div>
                                                     </td>
