@@ -14,7 +14,7 @@
                             </div>
                         </div>
                     </div>
-                    <h5 class="text-center">Periode {{ $nowMonthString }} {{ $twoYearAgo }} - {{ $nowMonthString }} {{ $nowYear }}</h5>
+                    <h5 class="text-center">Kuartal {{ $kuartal }}, Tahun {{ $year }}</h5>
                     <div class="card-body">
                         <div id="chart" ></div>
                         <div id="chart2" ></div>

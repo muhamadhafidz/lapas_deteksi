@@ -17,7 +17,8 @@ class InputDeteksiDiniController extends Controller
 {
     public function index()
     {
-        $insData = InstrumentData::get();
+        $uptId = auth()->user()->upt->id;
+        $insData = InstrumentData::where('upt_id', $uptId)->get();
 
         foreach ($insData as $ins) {
             $tsc = 0;
@@ -60,11 +61,13 @@ class InputDeteksiDiniController extends Controller
             'year'    => 'required'
         ]);
 
+        $uptId = auth()->user()->upt->id;
+
         $year = $item['year'];
 
         $quartal = $item['quartal'];
         
-        $data = InstrumentData::where('quartal', $quartal)->where('year', $year)->first();
+        $data = InstrumentData::where('quartal', $quartal)->where('year', $year)->where('upt_id', $uptId)->first();
 
         if ($data) {
             Alert::toast('Kamu telah membuat deteksi dini pada kuartal ini');

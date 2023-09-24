@@ -20,7 +20,7 @@
                 <input type="text" class="form-control" id="name-edit" name="name" readonly>
               </div>
               <div class="form-group">
-                  <label for="kepala_upt">Kelapa UPT</label>
+                  <label for="kepala_upt">Kepala UPT</label>
                   <input type="text" class="form-control" id="kepala_upt-edit" name="kepala_upt" required>
               </div>
               <div class="form-group">
@@ -29,7 +29,7 @@
               </div>
               <div class="form-group">
                   <label for="no_telp">Nomor Telpon</label>
-                  <input type="text" class="form-control" id="no_telp-edit" name="no_telp" required>
+                  <input type="number" class="form-control" id="no_telp-edit" name="no_telp" required>
               </div>
             </div> 
             <div class="modal-footer">

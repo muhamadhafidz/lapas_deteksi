@@ -33,7 +33,9 @@
                 color: #000000!important;
                 background-color: #6c757d !important;
             }
-
+            #printReport {
+                display: none;
+            }
             /* Add any additional styles you need for printing here */
         }
 </style>
@@ -51,7 +53,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="text-center">Grafik Tingkat Kerawanan Berdasarkan Hasil Instrument deteksi dini</h5>
-                        <h5 class="text-center">Periode {{ $nowMonthString }} {{ $twoYearAgo }} - {{ $nowMonthString }} {{ $nowYear }}</h5>
+                        <h5 class="text-center">Kuartal {{ $kuartal }}, Tahun {{ $year }}</h5>
                         <div class="table-responsive">
                             <button class="btn btn-outline-dark mb-2" type="button" id="printReport">Print</button>
                             <table class="table table-bordered" id="tableReport">

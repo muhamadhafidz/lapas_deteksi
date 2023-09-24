@@ -10,12 +10,13 @@ class PetaKerawananController extends Controller
     public function index()
     {
         $nowMonth = date('m');
-        $nowYear = date('Y');
-        $twoYearAgo = $nowYear - 2;
+        $year = date('Y');
+        $twoYearAgo = $year - 2;
         
-        $data = InstrumentData::where('created_at', '>=', $twoYearAgo.'-'.$nowMonth.'-01 00:00:00')
-            ->where('created_at', '<=', $nowYear.'-'.$nowMonth.'-31 23:59:59')
+        $data = InstrumentData::where('year', $year)->orderBy('quartal', 'desc')
             ->get();
+
+            $kuartal = $data->first()->quartal;
 
         $nowMonthString = date('F');
 
@@ -66,6 +67,6 @@ class PetaKerawananController extends Controller
 
             $upt .= $insData->upt->user->name. ' ';
         }
-        return view('admin.pages.peta-kerawanan.index', compact('merahArry', 'orangeArry', 'kuningArry', 'hijauArry', 'merah', 'orange', 'kuning', 'hijau', 'upt', 'nowMonthString', 'nowYear', 'twoYearAgo'));
+        return view('admin.pages.peta-kerawanan.index', compact('merahArry', 'orangeArry', 'kuningArry', 'hijauArry', 'merah', 'orange', 'kuning', 'hijau', 'upt', 'kuartal', 'year', 'twoYearAgo'));
     }
 }

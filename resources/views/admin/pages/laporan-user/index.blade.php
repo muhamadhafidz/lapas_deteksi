@@ -11,7 +11,7 @@
                     <div class="card-header ">
                         <div class="row mb-3">
                             <div class="col">
-                                <h4 class="card-title font-weight-normal">Data Master User</h4>
+                                <h4 class="card-title font-weight-normal">Laporan User</h4>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                                                 >Detail</a>
                                             <a class="btn btn-sm btn-warning" 
                                                 href="{{ route('user.laporan-user.export', $data->id) }}"
-                                                >Export</a>
+                                                >Print</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -63,11 +63,12 @@
         $('#crudTable').DataTable({
           dom: 'Blfrtip',
           buttons: [
-                'excel',  'print',
-{
-                extend: 'pdfHtml5',
-                orientation: 'landscape',
-                pageSize: 'LEGAL'
+            {
+                extend: 'print',
+                text: 'Print',
+                customize: function (win) {
+                    $(win.document.body).find('table thead tr th:nth-child(7), table tbody tr td:nth-child(7)').hide();
+                }
             }
             ],
           "scrollX": true

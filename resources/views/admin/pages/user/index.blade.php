@@ -86,9 +86,16 @@
     }
 
     $(document).ready(function(){
-        $('#crudTable').DataTable({
+        var table = $('#crudTable').DataTable({
           dom: 'Blfrtip',
-          buttons: ['print',
+          buttons: [
+            {
+                extend: 'print',
+                text: 'Print',
+                customize: function (win) {
+                    $(win.document.body).find('table thead tr th:nth-child(5), table tbody tr td:nth-child(5)').hide();
+                }
+            }
             ],
           "scrollX": true
         });

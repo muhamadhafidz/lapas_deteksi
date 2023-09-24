@@ -11,7 +11,8 @@ class UserLaporanController extends Controller
 {
     public function index()
     {
-        $insData = InstrumentData::get();
+        $uptId = auth()->user()->upt->id;
+        $insData = InstrumentData::where('upt_id', $uptId)->get();
 
         foreach ($insData as $ins) {
             $tsc = 0;

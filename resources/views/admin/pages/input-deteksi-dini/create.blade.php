@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
-                    <form action="{{ route('user.input-deteksi-dini.store') }}" method="POST">
+                    <form action="{{ route('user.input-deteksi-dini.store') }}" method="POST" id="submitForm">
                         @csrf
                         <div class="card-header ">
                             <div class="row mb-3">
@@ -91,7 +91,7 @@
                                     
                                 </tbody>
                             </table>
-                            <button type="submit" class="btn btn-success mt-5 w-100">Submit</button>
+                            <button type="button" id="submitBtn" class="btn btn-success mt-5 w-100">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -105,17 +105,19 @@
 @push('after-script')
 <script>
     $(document).ready(function(){
-        $('#crudTable').DataTable({
-          dom: 'Blfrtip',
-          buttons: [
-                'excel',  'print',
-{
-                extend: 'pdfHtml5',
-                orientation: 'landscape',
-                pageSize: 'LEGAL'
+        // after click submitBtn check if all radio button is checked
+        $('#submitBtn').click(function(){
+            var radio = $('input[type="radio"]:checked').length;
+            var radioTotal = $('input[type="radio"]').length;
+            if (radio != (radioTotal/3)) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Mohon Lengkapi Data',
+                })
+            } else {
+                // trigger submit current button
+                $('#submitForm').submit();
             }
-            ],
-          "scrollX": true
         });
     });
 </script>

@@ -83,13 +83,14 @@
     $(document).ready(function(){
         $('#crudTable').DataTable({
           dom: 'Blfrtip',
-          buttons: [
-                'excel',  'print',
-{
-                extend: 'pdfHtml5',
-                orientation: 'landscape',
-                pageSize: 'LEGAL'
+          buttons: [{
+                extend: 'print',
+                text: 'Print',
+                customize: function (win) {
+                    $(win.document.body).find('table thead tr th:nth-child(6), table tbody tr td:nth-child(6)').hide();
+                }
             }
+
             ],
           "scrollX": true
         });
