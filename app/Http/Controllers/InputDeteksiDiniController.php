@@ -48,8 +48,23 @@ class InputDeteksiDiniController extends Controller
             $tsc += $subCatAns->instrument_answer_result->tsc;
         }
         $insData->bobot_total = $tsc;
+        $print = false;
 
-        return view('admin.pages.input-deteksi-dini.detail', compact('insData'));
+        return view('admin.pages.input-deteksi-dini.detail', compact('insData', 'print'));
+    }
+
+    public function detailPrint($id)
+    {
+        $insData = InstrumentData::findOrFail($id);
+
+        $tsc = 0;
+        foreach($insData->sub_category_answers as  $subCatAns){
+            $tsc += $subCatAns->instrument_answer_result->tsc;
+        }
+        $insData->bobot_total = $tsc;
+
+        $print = true;
+        return view('admin.pages.input-deteksi-dini.detail', compact('insData', 'print'));
     }
 
     public function store(Request $request)

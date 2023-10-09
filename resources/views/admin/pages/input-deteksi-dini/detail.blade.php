@@ -13,6 +13,7 @@
                                 <h4 class="card-title font-weight-normal">Laporan User</h4>
                             </div>
                             <div class="col text-right">
+                                <button id="print" class="btn btn-secondary d-none" onclick="window.print()">PRINT</button>
                                 {{-- <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#create">+ Tambah Element Assessment</button> --}}
                             </div>
                         </div>
@@ -273,8 +274,12 @@
 
         $('#edit').modal('show');
     }
-
+    // function printData(){
+    //     window.print();
+    // };
     $(document).ready(function(){
+        
+
         $('#crudTable').DataTable({
           dom: 'Blfrtip',
           buttons: [
@@ -302,6 +307,17 @@
         }
         });
     }
-    
+
+    // javascript set time out code
+
+    setTimeout(function () {
+        if ("{{ $print }}") {
+            
+            $('#print').trigger('click');
+            window.location.href = "{{ route('user.laporan-user.index') }}";
+        }
+        
+    }, 2000);
+
 </script>
 @endpush

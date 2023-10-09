@@ -39,8 +39,13 @@
                                             <a class="btn btn-sm btn-secondary" 
                                                 href="{{ route('user.input-deteksi-dini.detail', $data->id) }}"
                                                 >Detail</a>
+                                            <form action="{{ route('user.input-deteksi-dini.delete', $data->id) }}" method="post" class="ml-1 d-inline" id="form-hapus-{{ $data->id }}">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="button" onclick="hapus({{ $data->id }})" class="btn btn-danger btn-sm">Hapus</button>
+                                            </form>
                                             <a class="btn btn-sm btn-warning" 
-                                                href="{{ route('user.laporan-user.export', $data->id) }}"
+                                                href="{{ route('user.input-deteksi-dini.detail-print', $data->id) }}"
                                                 >Print</a>
                                         </td>
                                     </tr>
@@ -60,6 +65,7 @@
 <script>
     
     $(document).ready(function(){
+
         $('#crudTable').DataTable({
           dom: 'Blfrtip',
           buttons: [

@@ -52,6 +52,7 @@ Route::middleware(['auth', 'isUser'])->group(function () {
     Route::get('/input-deteksi-dini/create', 'InputDeteksiDiniController@create')->name('user.input-deteksi-dini.create');
     Route::post('/input-deteksi-dini', 'InputDeteksiDiniController@store')->name('user.input-deteksi-dini.store');
     Route::get('/input-deteksi-dini/{id}', 'InputDeteksiDiniController@detail')->name('user.input-deteksi-dini.detail');
+    Route::get('/input-deteksi-dini/{id}/print', 'InputDeteksiDiniController@detailPrint')->name('user.input-deteksi-dini.detail-print');
     Route::get('/input-deteksi-dini/{id}/edit', 'InputDeteksiDiniController@edit')->name('user.input-deteksi-dini.edit');
     Route::put('/input-deteksi-dini/{id}/update', 'InputDeteksiDiniController@update')->name('user.input-deteksi-dini.update');
     Route::delete('/input-deteksi-dini/{id}/delete', 'InputDeteksiDiniController@delete')->name('user.input-deteksi-dini.delete');

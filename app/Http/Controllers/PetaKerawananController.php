@@ -13,10 +13,19 @@ class PetaKerawananController extends Controller
         $year = date('Y');
         $twoYearAgo = $year - 2;
         
-        $data = InstrumentData::where('year', $year)->orderBy('quartal', 'desc')
-            ->get();
+        if ($nowMonth >= 1 && $nowMonth <= 3) {
+            $kuartal = 1;
+        }else if ($nowMonth >= 4 && $nowMonth <= 6) {
+            $kuartal = 2;
+        }else if ($nowMonth >= 7 && $nowMonth <= 9) {
+            $kuartal = 3;
+        }else if ($nowMonth >= 10 && $nowMonth <= 12) {
+            $kuartal = 4;
+        }
 
-            $kuartal = $data->first()->quartal;
+        $data = InstrumentData::where('year', $year)->where('quartal', $kuartal)->get();
+
+            // $kuartal = $data->first()->quartal;
 
         $nowMonthString = date('F');
 
@@ -37,7 +46,7 @@ class PetaKerawananController extends Controller
                 $tsc += $subCatAns->instrument_answer_result->tsc;
             }
             $totalPet = number_format(($tsc / $insData->sub_category_answers->sum('nilai_bobot_ideal')), 2);
-            if (((1-$totalPet) * 100) >= 51 && ((1-$totalPet) * 100) < 100) {
+            if (((1-$totalPet) * 100) >= 51 && ((1-$totalPet) * 100) <= 100) {
                 $merah += (1-$totalPet) * 100;
                 $merahArry .= (1-$totalPet) * 100 . ' ';
             }else {
@@ -67,6 +76,8 @@ class PetaKerawananController extends Controller
 
             $upt .= $insData->upt->user->name. ' ';
         }
+
+        // dd($merahArry, $orangeArry, $kuningArry, $hijauArry, $merah, $orange, $kuning, $hijau, $upt, $kuartal, $year, $twoYearAgo);
         return view('admin.pages.peta-kerawanan.index', compact('merahArry', 'orangeArry', 'kuningArry', 'hijauArry', 'merah', 'orange', 'kuning', 'hijau', 'upt', 'kuartal', 'year', 'twoYearAgo'));
     }
 }

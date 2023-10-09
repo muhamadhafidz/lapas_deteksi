@@ -82,67 +82,77 @@
                                         $orangeArry = '';
                                         $kuningArry = '';
                                         $hijauArry = '';
+                                        $total = 0;
+                                        $uptUser = [];
                                     @endphp
                                     @foreach ($data as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->upt->user->name }}</td>
                                         @php
+                                            $uptUser[] = $item->upt->user->id;
                                             $totalPet = number_format(($item->bobot_total / $item->sub_category_answers->sum('nilai_bobot_ideal')), 2)
                                         @endphp
                                         <td class="bg-red">
-                                            @if (((1-$totalPet) * 100) >= 51 && ((1-$totalPet) * 100) < 100)
+                                            @if (((1-$totalPet) * 100) >= 51 && ((1-$totalPet) * 100) <= 100)
                                                 @php
-                                                    $merah += (1-$totalPet) * 100;
+                                                    $merah ++;
                                                     $merahArry .= (1-$totalPet) * 100 . ' ';
+                                                    $total += (1-$totalPet) * 100;
                                                 @endphp
                                             @else
                                                 @php
                                                     $merahArry .= '0 ';
                                                 @endphp
                                             @endif
-                                            {{ (((1-$totalPet) * 100) >= 51 && ((1-$totalPet) * 100) < 100) ? (1-$totalPet) * 100 : 0 }}
+                                            {{ (((1-$totalPet) * 100) >= 51 && ((1-$totalPet) * 100) <= 100) ? '1' : '0' }}
                                         </td>
                                         <td class="bg-orange">
                                             @if (((1-$totalPet) * 100) >= 34 && ((1-$totalPet) * 100) < 51)
                                                 @php
-                                                    $orange += (1-$totalPet) * 100;
+                                                    $orange ++;
                                                     $orangeArry .= (1-$totalPet) * 100 . ' ';
+                                                    $total += (1-$totalPet) * 100;
                                                 @endphp
                                             @else
                                                 @php
                                                     $orangeArry .= '0 ';
                                                 @endphp
                                             @endif
-                                            {{ (((1-$totalPet) * 100) >= 34 && ((1-$totalPet) * 100) < 51) ? (1-$totalPet) * 100 : 0 }}
+                                            {{ (((1-$totalPet) * 100) >= 34 && ((1-$totalPet) * 100) < 51) ? '1' : '0' }}
                                         </td>
                                         <td class="bg-yellow">
                                             @if (((1-$totalPet) * 100) >= 17 && ((1-$totalPet) * 100) < 34)
                                                 @php
-                                                    $kuning += (1-$totalPet) * 100;
+                                                    $kuning ++;
                                                     $kuningArry .= (1-$totalPet) * 100 . ' ';
+                                                    $total += (1-$totalPet) * 100;
                                                 @endphp
                                             @else
                                                 @php
                                                     $kuningArry .= '0 ';
                                                 @endphp
                                             @endif
-                                            {{ (((1-$totalPet) * 100) >= 17 && ((1-$totalPet) * 100) < 34) ? (1-$totalPet) * 100 : 0 }}
+                                            {{ (((1-$totalPet) * 100) >= 17 && ((1-$totalPet) * 100) < 34) ? '1' : '0' }}
                                         </td>
                                         <td class="bg-green">
                                             @if (((1-$totalPet) * 100) >= 0 && ((1-$totalPet) * 100) < 17)
                                                 @php
-                                                    $hijau += (1-$totalPet) * 100;
+                                                    $hijau ++;
                                                     $hijauArry .= (1-$totalPet) * 100 . ' ';
+                                                    $total += (1-$totalPet) * 100;
                                                 @endphp
                                             @else
                                                 @php
                                                     $hijauArry .= '0 ';
                                                 @endphp
                                             @endif
-                                            {{ (((1-$totalPet) * 100) >= 0 && ((1-$totalPet) * 100) < 17) ? (1-$totalPet) * 100 : 0 }}
+                                            {{ (((1-$totalPet) * 100) >= 0 && ((1-$totalPet) * 100) < 17) ? '1' : '0' }}
                                         </td>
-                                        <td>{{ $item->deskripsi }}</td>
+                                        <td>{{ $total.'%' }}</td>
+                                        @php
+                                            $total = 0;
+                                        @endphp
                                     </tr>
                                     @endforeach
                                     <tr>
@@ -155,7 +165,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="bg-dark">TOTAL KESELURUHAN UPT YANG TELAH MELAPORKAN</td>
-                                        <td colspan="4" class="bg-dark">{{ $merah + $orange + $kuning + $hijau  }}</td>
+                                        <td colspan="4" class="bg-dark">{{ count(array_unique($uptUser))  }}</td>
                                         <td class="bg-dark"></td>
                                     </tr>
                                     
