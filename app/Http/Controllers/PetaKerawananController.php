@@ -47,37 +47,40 @@ class PetaKerawananController extends Controller
             }
             $totalPet = number_format(($tsc / $insData->sub_category_answers->sum('nilai_bobot_ideal')), 2);
             if (((1-$totalPet) * 100) >= 51 && ((1-$totalPet) * 100) <= 100) {
-                $merah += (1-$totalPet) * 100;
-                $merahArry .= (1-$totalPet) * 100 . ' ';
+                $merah++;
+                $merahArry .= (1-$totalPet) * 100 . ', ';
             }else {
-                $merahArry .= '0 ';
+                $merahArry .= '0, ';
             }
 
             if (((1-$totalPet) * 100) >= 34 && ((1-$totalPet) * 100) < 51) {
-                $orange += (1-$totalPet) * 100;
-                $orangeArry .= (1-$totalPet) * 100 . ' ';
+                $orange++;
+                $orangeArry .= (1-$totalPet) * 100 . ', ';
             }else {
-                $orangeArry .= '0 ';
+                $orangeArry .= '0, ';
             }
 
             if (((1-$totalPet) * 100) >= 17 && ((1-$totalPet) * 100) < 34) {
-                $kuning += (1-$totalPet) * 100;
-                $kuningArry .= (1-$totalPet) * 100 . ' ';
+                $kuning++;
+                $kuningArry .= (1-$totalPet) * 100 . ', ';
             }else {
-                $kuningArry .= '0 ';
+                $kuningArry .= '0, ';
             }
 
             if (((1-$totalPet) * 100) >= 0 && ((1-$totalPet) * 100) < 17) {
-                $hijau += (1-$totalPet) * 100;
-                $hijauArry .= (1-$totalPet) * 100 . ' ';
+                $hijau++;
+                $hijauArry .= (1-$totalPet) * 100 . ', ';
             }else {
-                $hijauArry .= '0 ';
+                $hijauArry .= '0, ';
             }
 
-            $upt .= $insData->upt->user->name. ' ';
+            $upt .= $insData->upt->user->name. ', ';
         }
-
-        // dd($merahArry, $orangeArry, $kuningArry, $hijauArry, $merah, $orange, $kuning, $hijau, $upt, $kuartal, $year, $twoYearAgo);
+        $total = $merah + $orange + $kuning + $hijau;
+        $merah = ($merah / $total) * 100;
+        $orange = ($orange / $total) * 100;
+        $kuning = ($kuning / $total) * 100;
+        $hijau = ($hijau / $total) * 100;
         return view('admin.pages.peta-kerawanan.index', compact('merahArry', 'orangeArry', 'kuningArry', 'hijauArry', 'merah', 'orange', 'kuning', 'hijau', 'upt', 'kuartal', 'year', 'twoYearAgo'));
     }
 }

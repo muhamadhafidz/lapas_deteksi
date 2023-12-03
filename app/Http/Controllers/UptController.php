@@ -124,7 +124,7 @@ class UptController extends Controller
             }else {
                 unset($data['password']);
             }
-            Upt::where('id', $id)->update($data);
+            Upt::findOrFail($data['id'])->update($data);
             Alert::toast('UPT berhasil diubah!', 'success');
             return redirect()->route('admin.data-upt.index');
         }

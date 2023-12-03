@@ -69,23 +69,28 @@
     
     var dataMerah = '{{ $merahArry }}';
     dataMerah = dataMerah.trimEnd();
-    dataMerah = dataMerah.split(' ');
+    dataMerah = dataMerah.replace(/,\s*$/, "");
+    dataMerah = dataMerah.split(',');
 
     var dataOrange = '{{ $orangeArry }}';
     dataOrange = dataOrange.trimEnd();
-    dataOrange = dataOrange.split(' ');
+    dataOrange = dataOrange.replace(/,\s*$/, "");
+    dataOrange = dataOrange.split(',');
 
     var dataKuning = '{{ $kuningArry }}';
     dataKuning = dataKuning.trimEnd();
-    dataKuning = dataKuning.split(' ');
+    dataKuning = dataKuning.replace(/,\s*$/, "")
+    dataKuning = dataKuning.split(',');
 
     var dataHijau = '{{ $hijauArry }}';
     dataHijau = dataHijau.trimEnd();
-    dataHijau = dataHijau.split(' ');
+    dataHijau = dataHijau.replace(/,\s*$/, "")
+    dataHijau = dataHijau.split(',');
 
     var upt = '{{ $upt }}';
     upt = upt.trimEnd();
-    upt = upt.split(' ');
+    upt = upt.replace(/,\s*$/, "")
+    upt = upt.split(',');
 
 
     var options2 = {
