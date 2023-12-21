@@ -88,7 +88,7 @@
                                     @foreach ($data as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->upt->user->first() ? $item->upt->user->name : '' }}</td>
+                                        <td>{{ $item->upt->user ? $item->upt->user->name : '' }}</td>
                                         @php
                                             $uptUser[] = $item->upt->user->id;
                                             $totalPet = number_format(($item->bobot_total / $item->sub_category_answers->sum('nilai_bobot_ideal')), 2)

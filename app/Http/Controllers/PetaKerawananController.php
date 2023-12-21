@@ -74,7 +74,7 @@ class PetaKerawananController extends Controller
                 $hijauArry .= '0, ';
             }
 
-            $upt .= $insData->upt->user->name. ', ';
+            $upt .= ($insData->upt->user ? $insData->upt->user->name : ''). ', ';
         }
         $total = $merah + $orange + $kuning + $hijau;
         $merah = ($merah / $total) * 100;
