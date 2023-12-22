@@ -90,7 +90,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->upt->user ? $item->upt->user->name : '' }}</td>
                                         @php
-                                            $uptUser[] = $item->upt->user->id;
+                                            $uptUser[] = $item->upt->user ? $item->upt->user->id : '';
                                             $totalPet = number_format(($item->bobot_total / $item->sub_category_answers->sum('nilai_bobot_ideal')), 2)
                                         @endphp
                                         <td class="bg-red">
